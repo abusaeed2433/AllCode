@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=discovering_permutation
+comment1.params=arr\ l\ r\ k
+comment1.target=void\ FindString(java.lang.String[],\ int,\ int,\ int)
+comment2.params=arr\ k
+comment2.target=void\ Printer(java.lang.String[],\ int)
+comment3.params=args
+comment3.target=void\ main(java.lang.String[])
+numComments=4

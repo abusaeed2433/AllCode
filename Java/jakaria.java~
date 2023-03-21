@@ -1,0 +1,23 @@
+
+/**
+ * Write a description of jakaria here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+import java.util.*;
+import java.lang.*;
+public class jakaria {
+
+    public static void main(String args[]) {
+        Scanner input = new Scanner(System.in);
+        int number;
+        System.out.println("Enter a number: ");
+        number = input.nextInt();
+        System.out.printf("number %d",number);
+        String name;
+        System.out.printf("Enter your name: ");
+        name = input.next();
+        System.out.printf("Hello %s",name);
+    }
+}

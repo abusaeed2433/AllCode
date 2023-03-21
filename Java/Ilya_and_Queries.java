@@ -1,0 +1,28 @@
+
+/**
+ * Write a description of Ilya_and_Queries here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+import java.util.Scanner;
+public class Ilya_and_Queries {
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        String s=sc.next();
+        int arr[]=new int[s.length()];
+        arr[0]=0;
+        int count=0;
+        for(int i=0;i<s.length()-1;i++){
+            if(s.charAt(i)==(s.charAt(i+1))) count++;
+            arr[i+1]=count;
+        }
+        int t=sc.nextInt();
+        while(t>0){
+            t--;
+            int l=sc.nextInt();
+            int r=sc.nextInt();
+            System.out.println(arr[r-1]-arr[l-1]);
+        }
+    }
+}

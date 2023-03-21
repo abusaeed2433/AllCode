@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=Part2
+comment1.params=
+comment1.target=void\ testSimpleGene()
+comment1.text=public\ String\ FindSimpleGene(String\ dna){\r\n\ \ \ \ int\ ip\=dna.indexOf("ATG");\r\n\ \ \ \ if(ip\=\=-1)return\ "";\r\n\ \ \ \ else{\r\n\ \ \ \ \ \ \ \ int\ fp\=dna.indexOf("TAA",ip+3);\r\n\ \ \ \ \ \ \ \ if(fp\=\=-1)\ return\ "";\r\n\ \ \ \ \ \ \ \ else{\r\n\ \ \ \ \ \ \ \ dna\=dna.substring(ip,fp+3);\r\n\ \ \ \ \ \ \ \ if(dna.length()%3\=\=0)\ return\ dna;\r\n\ \ \ \ \ \ \ \ else\ return\ "";\r\n\ \ \ \ }\r\n\ \ \ \ }\r\n\r\n}\r\n
+numComments=2

@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=login_project_copied
+comment1.params=un
+comment1.target=int\ checker(java.lang.String)
+comment2.params=
+comment2.target=int\ user()
+comment3.params=
+comment3.target=int\ account()
+numComments=4

@@ -1,0 +1,24 @@
+
+/**
+ * Write a description of intense_heat here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+import java.util.*;
+public class intense_heat {
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int k=sc.nextInt();
+        double arr[]=new double[n];
+        double ans=0;
+        for(int i=0;i<n;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        int l=k;
+        
+    }
+}

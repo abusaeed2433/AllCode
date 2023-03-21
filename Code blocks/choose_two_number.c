@@ -1,0 +1,48 @@
+#include<stdio.h>
+int main()
+{
+    int a[100],b[100],n,m,e,f,i,j,k,l;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<(n-1);j++)
+        {
+            if(a[j]>=a[j+1])
+            {
+                continue;
+            }
+            else
+            {
+                e=a[j];
+                a[j]=a[j+1];
+                a[j+1]=e;
+            }
+        }
+    }
+    scanf("%d",&m);
+    for(k=0;k<m;k++)
+    {
+        scanf("%d",&b[k]);
+    }
+    for(k=0;k<m;k++)
+    {
+        for(l=0;l<(m-1);l++)
+        {
+            if(b[l]>=b[l+1])
+            {
+                continue;
+            }
+            else
+            {
+                f=b[l];
+                b[l]=b[l+1];
+                b[l+1]=f;
+            }
+        }
+    }
+    printf("%d %d",a[0],b[0]);
+}

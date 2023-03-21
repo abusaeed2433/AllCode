@@ -1,0 +1,30 @@
+#include<stdio.h>
+int main()
+{
+    int n,a[100000],i,j,x=0;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+        if(a[i]<0)
+        {
+            x++;
+        }
+        else
+        {
+            continue;
+        }
+    }
+    for(i=0;i<n;i++)
+    {
+        if(a[i]>0)
+        {
+            w=i+1;
+            for(j=i+1;j<(w+);j++)
+        }
+        else
+        {
+            continue;
+        }
+    }
+}

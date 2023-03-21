@@ -1,0 +1,39 @@
+#include<stdio.h>
+int main()
+{
+    int t,a[100000],b,i,j,d[100000],x,y;
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    for(i=0;i<t;i++)
+    {
+        x=0;
+        y=0;
+        b=i+a[i]+1;
+        for(j=(i+1);j<b;j++)
+        {
+            if(a[i]>=a[j])
+            {
+                if(y>0)
+                {
+                    continue;
+                }
+                else
+                {
+                    x++;
+                }
+            }
+            else
+            {
+                y=1;
+            }
+        }
+        d[i]=x;
+    }
+    for(i=0;i<t;i++)
+    {
+        printf("%d ",d[i]);
+    }
+}

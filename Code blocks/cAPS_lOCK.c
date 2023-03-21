@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int i,x=1;
+    char s[101];
+    scanf("%s",s);
+    for(i=1;i<strlen(s);i++)
+    {
+        if(s[i]>='A'&&s[i]<='Z')
+        {
+            continue;
+        }
+        else
+        {
+            x=0;
+            break;
+        }
+    }
+    if(x==0)
+    {
+        printf("%s",s);
+    }
+    else
+    {
+        if(s[0]>='a'&&s[0]<='z')
+        {
+            printf("%c",(int)s[0]-32);
+        }
+        else
+        {
+            printf("%c",(int)s[0]+32);
+        }
+        for(i=1;i<strlen(s);i++)
+        {
+            printf("%c",(int)s[i]+32);
+        }
+    }
+}

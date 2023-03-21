@@ -1,0 +1,47 @@
+#include<stdio.h>
+int main()
+{
+    int n,m,a,b,i,j,d,w=0,x=0,y=0,z=0;
+    scanf("%d%d",&n,&m);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a);
+        if(a%2==0)
+        {
+            w++;
+        }
+        else
+        {
+            x++;
+        }
+    }
+    for(j=0;j<m;j++)
+    {
+        scanf("%d",&b);
+        if(b%2==0)
+        {
+            y++;
+        }
+        else
+        {
+            z++;
+        }
+    }
+    if(w<=z)
+    {
+        d=w;
+    }
+    else
+    {
+        d=z;
+    }
+    if(x<=y)
+    {
+        d=d+x;
+    }
+    else
+    {
+        d=d+y;
+    }
+    printf("%d",d);
+}

@@ -1,0 +1,21 @@
+#include<stdio.h>
+#include<string.h>
+
+
+typedef struct{
+    char *a,*b,*c;
+} colors;
+
+colors temp(colors sample){
+    sample.a = "cyan";
+    sample.b = "magenta";
+    sample.c = "yellow";
+    return sample;
+}
+
+int main(){
+    
+    static colors 
+
+    return 0;
+}

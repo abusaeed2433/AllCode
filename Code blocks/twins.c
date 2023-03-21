@@ -1,0 +1,41 @@
+#include<stdio.h>
+int main()
+{
+    int n,a[100],i,j,e,s=0,z=1,y=0;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+        s=s+a[i];
+    }
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<(n-1);j++)
+        {
+            if(a[j]>=a[j+1])
+            {
+                continue;
+            }
+            else
+            {
+                e=a[j];
+                a[j]=a[j+1];
+                a[j+1]=e;
+            }
+        }
+    }
+    for(i=0;i<n;i++)
+    {
+        y=y+a[i];
+        if((2*y)>s)
+        {
+            printf("%d",z);
+            break;
+        }
+        else
+        {
+            z++;
+        }
+    }
+    return 0;
+}

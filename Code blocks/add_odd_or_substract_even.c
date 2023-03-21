@@ -1,0 +1,40 @@
+#include<stdio.h>
+int main()
+{
+    int t,a,b,c[10000],i,j;
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+        scanf("%d%d",&a,&b);
+        if(a==b)
+        {
+            c[i]=0;
+        }
+        else if(a>b)
+        {
+            if((a-b)%2==0)
+            {
+                c[i]=1;
+            }
+            else
+            {
+                c[i]=2;
+            }
+        }
+        else
+        {
+            if((b-a)%2==0)
+            {
+                c[i]=2;
+            }
+            else
+            {
+                c[i]=1;
+            }
+        }
+    }
+    for(i=0;i<t;i++)
+    {
+        printf("%d\n",c[i]);
+    }
+}

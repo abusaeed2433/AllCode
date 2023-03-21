@@ -1,0 +1,82 @@
+#include<stdio.h>
+int main()
+{
+    int n,i,j,k=0,x[101],e,f,p,q,g,h,r,rr,sum=0;
+    char s[21],c[103];
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%s",s);
+        c[i]=s[0];
+    }
+    c[n]='\0';
+    for(i=97;i<=122;i++)
+    {
+        x[k]=0;
+        for(j=0;j<n;j++)
+        {
+            if(i==(int)c[j])
+            {
+                x[k]++;
+            }
+        }
+        k++;
+    }
+    for(i=0;i<26;i++)
+    {
+        for(j=0;j<25;j++)
+        {
+            if(x[j]>=x[j+1])
+            {
+                continue;
+            }
+            else
+            {
+                int w=x[j];
+                x[j]=x[j+1];
+                x[j+1]=w;
+            }
+        }
+    }
+    for(j=0;j<26;j++)
+    {
+        g=1;h=1;r=1;rr=1;
+        if(x[j]!=0&&x[j]>2)
+        {
+            if(x[j]%2==0)
+            {
+                if(e==2)
+                {
+                    sum+=2;
+                }
+                else
+                {
+                    e=(int)(x[j]/2);
+                    f=e;
+                    g=(e*(e-1))/2;
+                    sum+=2*g;
+                }
+            }
+            else
+            {
+                e=(int)(x[j]/2);
+                f=(int)((x[j]/2)+1);
+                if(f==2)
+                {
+                    sum+=1;
+                }
+                else
+                {
+                    r=f*(f-1);
+                    sum+=(r-(f-1));
+                }
+            }
+        }
+        else
+        {
+            break;
+        }
+    }
+    printf("%d",sum);
+    return 0;
+}

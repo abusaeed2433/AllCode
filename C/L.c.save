@@ -1,0 +1,40 @@
+#include<stdio.h>
+
+int main(){
+    int n,a;
+    while(scanf("%d",&n)!=0){
+        int row[n]=0,col[n]=0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                scanf("%d",&a);
+                col[j]+=a;
+                row[i]+=a;
+            }
+        }
+        int checker=0;
+        int r,c;
+        for(int i=0;i<n;i++){
+            if(row[i]%2==1){
+                checker++;
+                r=i+1;
+            }
+            if(col[i]%2==1){
+                checker++;
+                c=i+1;
+            }
+        }
+
+        if(!checker){
+            printf("OK\n");
+        }
+        else if(checker==1){
+            printf("Change bit (%d,%d)\n",r,c);
+        }
+        else{
+            printf("Corrup")
+        }
+
+
+    }
+    return 0;
+}

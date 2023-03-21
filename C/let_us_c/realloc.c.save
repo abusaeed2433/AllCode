@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+int main(){
+
+    char *cnt;
+    cnt = (char*) malloc(10);
+    strcpy(cnt,"saeed");
+    printf("%s\n",cnt);
+
+    cnt = (char*) realloc(15);
+    
+    printf("%s\n".cnt);
+    
+    strcpy(cnt,"greatest idiot");
+    
+    print
+
+    return 0;
+}
+

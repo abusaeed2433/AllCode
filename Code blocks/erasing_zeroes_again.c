@@ -1,0 +1,39 @@
+#include<stdio.h>
+int main()
+{
+    int a,b,c,i,j,t,d=0,e=1;
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+        scanf("%d",&a);
+        if(a==0)
+        {
+            b[i]=0;
+        }
+        else
+        {
+            for(j=1;j<=100;j++)
+            {
+                if(a/(pow(10,j))>=1)
+                {
+                    e++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            for(j=1;j<=100;j++)
+            {
+                if(a%(pow(10,j))==0)
+                {
+                    d++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+    }
+}

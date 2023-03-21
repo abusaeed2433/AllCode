@@ -1,0 +1,34 @@
+#include<stdio.h>
+int main()
+{
+    int t,n[101],a,d[101],i,e,j;
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+        scanf("%d",&n[i]);
+    }
+    for(j=1;j<=100;j++)
+    {
+        d[j]=0;
+        for(i=0;i<t;i++)
+        {
+            if(n[i]==j)
+            {
+                d[j]++;
+            }
+        }
+    }
+    e=d[1];
+    for(i=1;i<100;i++)
+    {
+        if(e>=d[i+1])
+        {
+            continue;
+        }
+        else
+        {
+            e=d[i+1];
+        }
+    }
+    printf("%d",e);
+}

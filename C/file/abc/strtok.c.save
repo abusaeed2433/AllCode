@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<string.h>
+
+int main(){
+    char str[]= "absdhkskdasab jsskaabkasjabab";
+    int counter = 0;
+    char fnd[] = "ab";
+    for(int i=0;i<strlen(str);i++){
+
+    
+        for(j=i;j<i+strlen(fnd) && j<strlen(str);j++){
+            if(str[j]!=fnd[j-i]){
+                break;
+            }
+        }
+    }
+    return 0;
+}

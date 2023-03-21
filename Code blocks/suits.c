@@ -1,0 +1,64 @@
+#include<stdio.h>
+int main()
+{
+    int a,b,c,d,e,f,g,h;
+    scanf("%d%d%d%d%d%d",&a,&b,&c,&d,&e,&f);
+    if(e>=f)
+    {
+        if(a>=d)
+        {
+            printf("%d",(d*e));
+        }
+        else
+        {
+            g=a*e;
+            d=d-a;
+            if(b<=c&&b<=d)
+            {
+                printf("%d",g+(b*f));
+            }
+            else if(c<=b&&c<=d)
+            {
+                printf("%d",g+(c*f));
+            }
+            else
+            {
+                printf("%d",g+(d*f));
+            }
+        }
+    }
+    else
+    {
+        if(b<=c&&b<=d)
+        {
+            g=b*f;
+            d=d-b;
+            if(a>=d)
+            {
+                printf("%d",g+(d*e));
+            }
+            else
+            {
+                printf("%d",g+(a*e));
+            }
+        }
+        else if(c<=b&&c<=d)
+        {
+            g=c*f;
+            d=d-c;
+            if(a>=d)
+            {
+                printf("%d",g+(d*e));
+            }
+            else
+            {
+                printf("%d",g+(a*e));
+            }
+        }
+        else
+        {
+            g=d*f;
+            printf("%d",g);
+        }
+    }
+}

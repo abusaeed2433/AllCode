@@ -1,0 +1,39 @@
+#include<stdio.h>
+int main()
+{
+    int x,y,z,a,b,c,d;
+    scanf("%d%d%d%d%d%d",&x,&y,&z,&a,&b,&c);
+    if(x<=a)
+    {
+        a=a-x;
+        if((a+b)>=y)
+        {
+            b=a+b-y;
+            if((b+c)>=z)
+            {
+                d=1;
+            }
+            else
+            {
+                d=0;
+            }
+        }
+        else
+        {
+            d=0;
+        }
+    }
+    else
+    {
+        d=0;
+    }
+    if(d==1)
+    {
+        printf("YES");
+    }
+    else
+    {
+        printf("NO");
+    }
+    return 0;
+}

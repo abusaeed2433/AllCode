@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    int i,j;
+    long long int n,k,c;
+    scanf("%lld%lld",&n,&k);
+    if(n>=k)
+    {
+        if(n%k==0)
+        {
+            printf("0");
+        }
+        else
+        {
+            if((n%k)<=(k-(n%k)))
+            {
+                printf("%lld",(n%k));
+            }
+            else
+            {
+                printf("%lld",(k-(n%k)));
+            }
+        }
+    }
+    else
+    {
+        c=n-k;
+        c=abs(c);
+        if(c<=n)
+        {
+            printf("%lld",c);
+        }
+        else
+        {
+            printf("%lld",n);
+        }
+    }
+}

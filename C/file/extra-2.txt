@@ -1,0 +1,227 @@
+package com.example.docure;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.ContentResolver;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.webkit.MimeTypeMap;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Objects;
+
+public class CreateAccountD2 extends AppCompatActivity {
+
+	public static final int PICK_IMAGE_REQUEST = 1;
+	ImageView imageViewProfile;
+	Button buttonChoose,buttonCompleteReg;
+	Uri imageUri;
+	StorageReference storageRef;
+	Toast toast;
+	FirebaseAuth fAuth;
+	public static boolean isFromD2;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_create_account_d2);
+
+		imageViewProfile = findViewById(R.id.imageViewProfile);
+		buttonChoose = findViewById(R.id.buttonChoose);
+		buttonCompleteReg = findViewById(R.id.buttonCompleteReg);
+
+		storageRef = FirebaseStorage.getInstance().getReference();
+		fAuth = FirebaseAuth.getInstance();
+
+
+		buttonChoose.setOnClickListener(view -> openFileChooser());
+
+		buttonCompleteReg.setOnClickListener(view -> {
+			if (imageUri != null) {
+				Dialog dialog = new Dialog(CreateAccountD2.this);
+				showProgress(dialog);
+				createUser((check, error) -> {
+					if (check) {
+						saveDataToDb(new CreateAccountP.callBack() {
+							@Override
+							public void onCallBack(boolean check, String error) {
+							saveDataToDb2(new CreateAccountP.callBack() {
+								@Override
+								public void onCallBack(boolean check, String error) {
+									uploadFile((check1, error1) -> {
+										dialog.dismiss();
+										showDialog();
+									});
+								}
+							});
+							}
+						});
+					} else {
+						dialog.dismiss();
+						new showCustomToast(CreateAccountD2.this).customToast(error, 1);
+					}
+				});
+			}
+			else{
+				new showCustomToast(CreateAccountD2.this).customToast("Choose a image first",1);
+			}
+		});
+	}
+
+	public void openFileChooser(){
+		Intent intent = new Intent();
+		intent.setType("image/*");
+		intent.setAction(Intent.ACTION_GET_CONTENT);
+		startActivityForResult(intent,PICK_IMAGE_REQUEST);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode==PICK_IMAGE_REQUEST && resultCode==RESULT_OK && data!=null && data.getData()!=null){
+			imageUri = data.getData();
+			File file = new File(String.valueOf(imageUri));
+			int file_size = Integer.parseInt(String.valueOf(file.length()/1024));
+			if(file_size>100){
+				imageUri = null;
+				new showCustomToast(CreateAccountD2.this).customToast("Maximum file size is 100kb",1);
+			}
+			else{
+				try {
+					imageViewProfile.setImageURI(imageUri);
+				}
+				catch (Exception ignored){}
+			}
+		}
+	}
+
+
+	public String getFileExtension(Uri uri){
+		ContentResolver cr = getContentResolver();
+		MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+		return mimeTypeMap.getExtensionFromMimeType(cr.getType(uri));
+	}
+
+	public void uploadFile(CreateAccountP.callBack cb){
+		if(imageUri!=null){
+			storageRef.child(fAuth.getUid()).putFile(imageUri).addOnSuccessListener(taskSnapshot -> cb.onCallBack(true,"")).addOnFailureListener(e -> {
+				cb.onCallBack(false,"");
+				Toast.makeText(CreateAccountD2.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+			});
+		}
+		else{
+			cb.onCallBack(false,"");
+			new showCustomToast(CreateAccountD2.this).customToast("Choose a image first",1);
+		}
+	}
+
+	public void showDialog(){
+		fAuth.signOut();
+		new AlertDialog.Builder(CreateAccountD2.this)
+				.setTitle("Manual verification required")
+				.setMessage("We will verify your details manually and will send you a email with activation link within 3 days")
+				.setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
+					isFromD2 = true;
+					startActivity(new Intent(CreateAccountD2.this,MainActivity.class));
+				})
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setCancelable(false)
+				.show();
+	}
+
+	public void createUser(CreateAccountP.callBack cb){
+		fAuth.createUserWithEmailAndPassword(Constant.docData.get(3),Constant.docData.get(6)).addOnCompleteListener(task -> {
+			if(task.isSuccessful()){
+				cb.onCallBack(true,"");
+			}
+			else{
+				cb.onCallBack(false, Objects.requireNonNull(task.getException()).getMessage());
+			}
+		});
+	}
+
+	public void saveDataToDb(CreateAccountP.callBack cb){
+		fAuth = FirebaseAuth.getInstance();
+		System.out.println("called saveToDb fAuth "+fAuth);
+		DatabaseReference ref = FirebaseDatabase.getInstance().getReference()
+				.child("Doctor").child(Objects.requireNonNull(fAuth.getUid()));
+		ref.setValue(Constant.docData).addOnSuccessListener(new OnSuccessListener<Void>() {
+			@Override
+			public void onSuccess(Void aVoid) {
+				cb.onCallBack(true,"");
+			}
+		}).addOnFailureListener(new OnFailureListener() {
+			@Override
+			public void onFailure(@NonNull Exception e) {
+				cb.onCallBack(false,"");
+				Toast.makeText(CreateAccountD2.this, e.getMessage(), Toast.LENGTH_LONG).show();
+			}
+		});
+
+	}
+
+	public void saveDataToDb2(CreateAccountP.callBack cb){
+		DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference()
+				.child("Pending");
+
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("Name",Constant.docData.get(0));
+		map.put("NID",Constant.docData.get(1));
+		map.put("BMDC_num",Constant.docData.get(2));
+		map.put("Email",Constant.docData.get(3));
+		map.put("Phone",Constant.docData.get(4));
+		map.put("District",Constant.docData.get(5));
+		map.put("Title",Constant.docData.get(8));
+		map.put("BirthDate",Constant.docData.get(9));
+		map.put("Gender",Constant.docData.get(10));
+
+		System.out.println("called <-> "+Constant.docData.get(3));
+		ref2.child(fAuth.getUid()).setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+			@Override
+			public void onSuccess(Void aVoid) {
+				cb.onCallBack(true,"");
+			}
+		}).addOnFailureListener(new OnFailureListener() {
+			@Override
+			public void onFailure(@NonNull Exception e) {
+				Toast.makeText(CreateAccountD2.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+				cb.onCallBack(false,e.getMessage());
+			}
+		});
+	}
+
+	//show progressBar
+	public void showProgress(Dialog dialog) {
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.progress_bar_2);
+		dialog.setCanceledOnTouchOutside(false);
+		dialog.setOnCancelListener(dialogInterface -> CreateAccountD2.this.finish());
+		dialog.setCancelable(false);
+		dialog.show();
+	}
+	//show progressBar above
+}

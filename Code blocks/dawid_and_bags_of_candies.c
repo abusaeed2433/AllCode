@@ -1,0 +1,57 @@
+#include<stdio.h>
+int main()
+{
+    int a[4],b,c,d,i,j,m,z,sum;
+    for(i=0;i<4;i++)
+    {
+    scanf("%d",&a[i]);
+    }
+    sum=a[0]+a[1]+a[2]+a[3];
+    if(sum%2==1)
+    {
+        printf("NO");
+    }
+    else
+    {
+    m=sum/2;
+    for(i=0;i<4;i++)
+    {
+        for(j=0;j<4;j++)
+        {
+            if(j!=i)
+            {
+                if((a[i]+a[j])==m||(sum-a[j])==m)
+                {
+                    z=1;
+                    break;
+                }
+                else
+                {
+                    z=0;
+                }
+            }
+            else
+            {
+                continue;
+            }
+        }
+        if(z==1)
+        {
+            break;
+        }
+        else
+        {
+            continue;
+        }
+    }
+    if(z==0)
+    {
+        printf("NO");
+    }
+    else
+    {
+        printf("YES");
+    }
+    }
+    return 0;
+}

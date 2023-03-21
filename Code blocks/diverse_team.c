@@ -1,0 +1,77 @@
+#include<stdio.h>
+int main()
+{
+    int n,i,j,b,k;
+    scanf("%d%d",&n,&k);
+    int a[n],f[n],s[n];
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    for(i=0;i<n;i++)
+    {
+        s[i]=a[i];
+    }
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<(n-1);j++)
+        {
+            if(a[j]<=a[j+1])
+            {
+                continue;
+            }
+            else
+            {
+                b=a[j];
+                a[j]=a[j+1];
+                a[j+1]=b;
+            }
+        }
+    }
+    int x=1,w=1,g[n];
+    for(i=0;i<(n-1);i++)
+    {
+        if(a[i]==a[i+1])
+        {
+            continue;
+        }
+        else
+        {
+            x++;
+            g[0]=a[0];
+            g[w]=a[i+1];
+            w++;
+        }
+    }
+    if(x>=k)
+    {
+        printf("YES\n");
+        if(n==1&&k==1)
+        {
+            printf("1");
+        }
+        else
+        {
+        for(i=0;i<k;i++)
+        {
+            for(j=0;j<n;j++)
+            {
+                if(g[i]==s[j])
+                {
+                    printf("%d ",j+1);
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+        }
+        }
+    }
+    else
+    {
+        printf("NO");
+    }
+    return 0;
+}

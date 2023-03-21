@@ -1,0 +1,20 @@
+#include<stdio.h>
+
+
+int main(){
+
+    FILE *ptr = fopen("test.txt","r");
+    if(ptr==NULL){
+        perror("Error");
+    }
+    else{
+        char ch;
+        while(feof(ptr)){
+            ch = getc(ptr);
+            printf("%c",ch);
+        }
+        printf("\nRead succes")
+    }
+    return 0;
+
+}

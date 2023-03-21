@@ -1,0 +1,16 @@
+#include<stdio.h>
+
+int main(){
+
+    int t;
+    scanf("%d",&t);
+    int case=1;
+    while(case<=t){
+        int a,b,c;
+        scanf("%d%d%d",&a,&b,&c);
+        int maxm = a>=b ? a>=c ? a:c : b>=c ? b:c;
+        int mini = a<=b ? a<=c ? a:c : b<=c ? b:c;
+        printf("Case %d: %d\n",case,a+b=c-maxm-mini);
+    }
+    return 0;
+}

@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int i,j,t,n,x=0,y=0;
+    char s[51],c[51];
+    scanf("%s%s",s,c);
+    t=strlen(c);
+    n=strlen(s);
+    if(t<=n)
+    {
+    for(i=0;i<t;i++)
+    {
+        for(j=y;j<t;j++)
+        {
+            if(s[i]==c[j])
+            {
+                x++;
+                y++;
+                break;
+            }
+            else
+            {
+                y++;
+            }
+        }
+    }
+    }
+    else
+    {
+    for(i=0;i<n;i++)
+    {
+        for(j=y;j<t;j++)
+        {
+            if(s[i]==c[j])
+            {
+                x++;
+                y++;
+                break;
+            }
+            else
+            {
+                y++;
+            }
+        }
+    }
+    }
+    if(y==1)
+    {
+        printf("1");
+    }
+    else
+    {
+        printf("%d",x+1);
+    }
+    return 0;
+}

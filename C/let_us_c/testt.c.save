@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    long long int t;
+    scanf("%lld",&t);
+    while (t>0)
+    {
+        t--;
+        long loint l,r,a;
+        scanf("%d",&l);
+        scanf("%d",&r);
+        scanf("%d",&a);
+        int ans = r/a + r%a;
+        int lst = a-1 > l ? a-1 : l;
+        while (r>=lst)
+        {
+            int val = r/a + r%a;
+            ans = ans > val ? ans : val;
+            r--;
+        }
+        printf("%d\n",ans);
+    }
+
+}

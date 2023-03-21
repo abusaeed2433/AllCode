@@ -1,0 +1,52 @@
+#include<stdio.h>
+int main()
+{
+    int a,b,c,d,e,f,g,h,i,n,count=0;;
+    scanf("%d",&n);
+    if(n<5)
+    {
+        printf("%d",n);
+    }
+    else
+    {
+        b=n%5;
+        c=n/5;
+        if(b==0)
+        {
+            d=c%2;
+            e=c/2;
+            if(d==0)
+            {
+                f=c/2;
+                g=c%2;
+                if(g==0)
+                {
+                    h=f%5;
+                    i=f/5;
+                    if(h==0)
+                    {
+                        count=i;
+                    }
+                    else
+                    {
+                        count=count+h;
+                    }
+                }
+                else
+                {
+                    count=count+g;
+                }
+            }
+            else
+            {
+                count=count+d;
+            }
+        }
+        else
+        {
+            count=count+b;
+        }
+        printf("%d",count);
+    }
+
+}

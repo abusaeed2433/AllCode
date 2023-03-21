@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    int t,n,i,k,gc;
+    scanf("%d",&t);
+    while(t--){
+        scanf("%d%d",&n,&k);
+        if(k>=n){
+            printf("1\n");
+        }
+        else{
+            if(n%k==0){
+                printf("%d\n",n/k);
+            }
+            else{
+                int z=0;
+                for(i=2;i<(int)(ceil(sqrt(n))+1);i++){
+                    if(n%i==0){
+                        z=1;
+                        break;
+                    }
+                    else{
+                        continue;
+                    }
+                }
+                if(z==0){
+                    printf("%d\n",n);
+                }
+                else{
+                    int gc;
+                    for(i=k;i>=1;i--){
+                        if(n%i==0&&k%i==0){
+                            gc=i;
+                            break;
+                        }
+                        else{
+                            continue;
+                        }
+                    }
+                    while(n%k!=0){
+                        k-=gc;
+                    }
+                    printf("%d\n",n/k);
+                }
+            }
+        }
+    }
+}

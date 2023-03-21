@@ -1,0 +1,39 @@
+#include<stdio.h>
+int main()
+{
+    int t,x,y,a,b,i,z[1000],c,j,p[1000];
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+        p[i]=0;
+        z[i]=0;
+        scanf("%d%d%d%d",&x,&y,&a,&b);
+        c=(y-x)/(a+b);
+        for(j=0;j<=c;j++)
+        {
+            if(x==y)
+            {
+                p[i]=1;
+                break;
+            }
+            else
+            {
+                x=x+a;
+                y=y-b;
+                z[i]++;
+            }
+        }
+    }
+    for(i=0;i<t;i++)
+    {
+        if(z[i]>0&&p[i]==1)
+        {
+            printf("%d\n",z[i]);
+        }
+        else
+        {
+            printf("-1\n");
+        }
+    }
+    return 0;
+}

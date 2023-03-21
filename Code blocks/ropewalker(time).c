@@ -1,0 +1,81 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    int a,b,c,d,e,f,g,i,j,k;
+    scanf("%d%d%d%d",&e,&f,&g,&d);
+    //sorting e,f,g and putting value in a b c//
+    if(e>=f&&e>=g)
+    {
+        c=e;
+        if(f>=g)
+        {
+            b=f;
+            a=g;
+        }
+        else
+        {
+            b=g;
+            a=f;
+        }
+    }
+    else if(f>=e&&f>=g)
+    {
+        c=f;
+        if(e>=g)
+        {
+            b=e;
+            a=g;
+        }
+        else
+        {
+            b=g;
+            a=e;
+        }
+    }
+    if(g>=f&&g>=e)
+    {
+        c=g;
+        if(f>=e)
+        {
+            b=f;
+            a=e;
+        }
+        else
+        {
+            b=e;
+            a=f;
+        }
+    }
+    //sorted above//
+    int x=0;
+    for(i=0;;i++)
+    {
+        if((b-a)>=d)
+        {
+            if((c-b)>=d)
+            {
+                if((c-a)>=d)
+                {
+                    printf("%d",x);
+                    break;
+                }
+                else
+                {
+                    c=c+1;
+                    x++;
+                }
+            }
+            else
+            {
+                c=c+1;
+                x++;
+            }
+        }
+        else
+        {
+            a=a-1;
+            x++;
+        }
+    }
+}

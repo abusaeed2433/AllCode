@@ -1,0 +1,56 @@
+#include<stdio.h>
+int main()
+{
+    int t,a,b,c,i,d[100],x;
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+        scanf("%d%d%d",&a,&b,&c);
+        if(c<=(2*a))
+        {
+            if((2*b)<=c)
+            {
+                x=3*b;
+            }
+            else
+            {
+                y=c/2;
+                x=3*y;
+                b=b-y;
+                if(b>=(2*a))
+                {
+                    x=x+3*a;
+                }
+                else
+                {
+                    x=x+3*(b/2);
+                }
+            }
+        }
+        else
+        {
+            if((2*b)<=a)
+            {
+                x=3*(b/2);
+            }
+            else
+            {
+                x=3*a;
+                b=b-(x/3);
+                if(c>=(2*b))
+                {
+                    x=x+3*b;
+                }
+                else
+                {
+                    x=x+3*(c/2);
+                }
+            }
+        }
+        d[i]=x;
+    }
+    for(i=0;i<t;i++)
+    {
+        printf("%d\n",d[i]);
+    }
+}

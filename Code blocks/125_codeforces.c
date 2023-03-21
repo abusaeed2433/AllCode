@@ -1,0 +1,51 @@
+#include<stdio.h>
+int main()
+{
+    int a,b,n,w,x,y,z,zz;
+    scanf("%d",&n);
+    if(n%100==0)
+    {
+        printf("%d",(n/100));
+    }
+    else
+    {
+        w=n/100;
+        n=n%100;
+        if(n==0)
+        {
+            printf("%d",w);
+        }
+        else
+            {
+                y=n/20;
+                n=n%20;
+                if(n==0)
+                {
+                    printf("%d",(w+x+y));
+                }
+                else
+                {
+                    z=n/10;
+                    n=n%10;
+                    if(n==0)
+                    {
+                        printf("%d",(w+x+y+z));
+                    }
+                    else
+                    {
+                        zz=n/5;
+                        n=n%5;
+                        if(n==0)
+                        {
+                            printf("%d",(w+x+y+z+zz));
+                        }
+                        else
+                        {
+                            printf("%d",(w+x+y+z+zz+n));
+                        }
+                    }
+                }
+            }
+        }
+    return 0;
+}

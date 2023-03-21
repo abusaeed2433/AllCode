@@ -1,0 +1,53 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int i,j,n;
+    char s[51],x[52];
+    scanf("%s",s);
+    n=strlen(s);
+    if(n==1)
+    {
+        printf("%s",s);
+    }
+    else if(n%2==0)
+    {
+        j=1;
+        for(i=(n/2);i<n;i++)
+        {
+            x[j]=s[i];
+            j+=2;
+        }
+        j=0;
+        for(i=(n/2)-1;i>=0;i--)
+        {
+            x[j]=s[i];
+            j+=2;
+        }
+        x[n]='/0';
+        for(i=0;i<n;i++)
+        {
+            printf("%c",x[i]);
+        }
+    }
+    else
+    {
+        j=1;
+        for(i=(n/2)+1;i<n;i++)
+        {
+            x[j]=s[i];
+            j+=2;
+        }
+        j=0;
+        for(i=(n/2);i>=0;i--)
+        {
+            x[j]=s[i];
+            j+=2;
+        }
+        x[n]='/0';
+        for(i=0;i<n;i++)
+        {
+            printf("%c",x[i]);
+        }
+    }
+}

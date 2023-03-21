@@ -1,0 +1,62 @@
+#include<stdio.h>
+int main()
+{
+    long long int n,t,i,j,gcd,a=1,b=1,c,d;
+    scanf("%lld%lld",&c,&d);
+    if(c>d)
+    {
+        for(i=d;i>0;i--)
+        {
+            b=b*i;
+        }
+        for(i=c;i>0;i--)
+        {
+            a=a*i;
+            for(j=b;j>0;j--)
+            {
+                if(b%j==0&&a%j==0)
+                {
+                    printf("%d",j);
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+        }
+    }
+    else if(c<d)
+      {
+        for(i=c;i>0;i--)
+        {
+            a=a*i;
+        }
+        for(i=d;i>0;i--)
+        {
+            b=b*i;
+            for(j=a;j>0;j--)
+            {
+                if(a%j==0&&b%j==0)
+                {
+                    printf("%d",j);
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+        }
+      }
+    else if(c==d)
+    {
+        a=1;
+        for(i=c;i>0;i--)
+        {
+            a=a*i;
+        }
+            printf("%lld",a);
+    }
+    return 0;
+}

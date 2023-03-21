@@ -1,0 +1,43 @@
+add_admin.c => Enter phone && pass > admin added
+read_all.c  => will show all saved data in all saved file
+< - - cm.c        => Class Management project main file - - >
+
+				ADMIN PANEL
+	1.add teacher
+		=> take teacher info and add teacher to file afte some validation
+	2.add student
+		=> take student info and add student to file after some validation
+	3.update teacher
+		=> Enter dept > select teacher > Enter new info > Updated(after validation)
+	4.update student
+		=> Enter dept > select student > Enter new info > Updated(after validation)
+	5.remove teacher
+		=> Enter dept > select teacher > removed
+	6.remove student
+		=> Enter dept > select student > removed
+	7.assign course
+		=> Enter dept > Select teacher > Enter course_code > Completed(after validation)
+	8.update course
+		=> Enter dept > select teacher > Select course_code > Enter new course_code(for update)/ Blank(for removing) > completed
+
+			TEACHER'S PANEL
+	1.Add CT marks(1)
+		=> select course_code > Enter dept > add mark(if any student have enrolled this course)
+		***Each student can enroll course from student's portal***.
+		**If no one enroll any courses, no teacher can add mark to their assigned course**
+	2.Update CT marks(2)
+		=> Select course_code > Enter dept > add new marks(if above condition is fulfilled)
+	3.Find student by roll(3)
+		=> Enter roll and see search result
+	4.Find student by name(4)
+		=> Enter 'keyword' > will show all students whose name contains given 'keyword'
+	5.Total students(5)
+		=> will show total student dept. wise
+
+			STUDENT'S PORTAL
+	1.Enroll course(1)
+		=> Enter course_code > completed if given course_code is assigned to any teacher
+	2.Remove course(2)
+		=> Select course > removed
+        3.Show CT marks(3)
+		=> see all ct marks based on course_code and teacher

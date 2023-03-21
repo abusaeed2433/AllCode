@@ -11,7 +11,6 @@ public:
         this->w = w;
     }
 };
-
 class Graph{
     int n,e;
     vector<Edge> edges;

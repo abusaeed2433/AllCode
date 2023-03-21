@@ -10,3 +10,4 @@ for i in range(len(x)):
 	if n<x[i]:
 		print(9-i)
 		break
+

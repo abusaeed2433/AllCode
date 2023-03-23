@@ -19,9 +19,9 @@ create table course(
 	code integer primary key check(code>1000),
 	title varchar(20),
 	nob integer,		
-	foreign key(dept_id) references dept(dept_id),
+	foreign key(dept_id) references dept(dept_id)
 	on delete cascade,
 	constraint validate_course_info check(
-		(title is not null) and (nob>0)
+		(title is not null) and (nob>0) and (LENGTH(dept_id)<4)
 	)	
 );

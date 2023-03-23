@@ -48,6 +48,7 @@ select * from course;
 prompt select * from dept D natural join course C;
 select * from dept D natural join course C;
 
+
 prompt select dept_id, sum(nob) from dept left outer join course C using(dept_id) group by dept_id;
 select dept_id, sum(nob) from dept left outer join course C using(dept_id) group by dept_id;
 
@@ -58,5 +59,12 @@ delete from dept where dept_id='ese';
 prompt 'Re-inserting again';
 insert into dept values('ese','Computer science',13,'running');
 insert into course values('ese',3110,'Database Lab',35);
+
+
+select * from dept join course on dept.dept_id = course.dept_id;
+
+select * from dept left join course on dept.dept_id = course.dept_id;
+
+select * from dept left outer join course on dept.dept_id = course.dept_id;
 
 

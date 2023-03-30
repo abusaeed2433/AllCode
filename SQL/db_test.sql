@@ -68,8 +68,4 @@ prompt not_ordered
 select * from customer where id not in(select customer_id from order_table);
 
 
---prompt expensive order
---select name from customer where id = max(select price from goods);
-
-
 

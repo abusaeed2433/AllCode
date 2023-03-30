@@ -7,16 +7,16 @@ drop table user_table;
 create table user_table(
 	uid_ varchar(20) primary key,
 	name varchar(30),
-	email varchar(30),
-	password varchar(20)
+	email varchar(30) not null,
+	password varchar(20) not null
 );
 
 create table day_schedule(
 	date_ varchar(10) primary key,
-	time_in_day integer,
+	time_in_day integer not null,
 	day varchar(10),
 	uploader varchar(30),
-	time varchar(10),
+	time_ varchar(10),
 	uid_ varchar(20),
 	foreign key(uid_) references user_table(uid_)
 );
@@ -25,7 +25,7 @@ create table time_schedule(
 	timestamp_ integer,
 	timestamp_utc integer,
 	message_time varchar(10),
-	message varchar(30),
+	message varchar(20),
 	upload_time varchar(10),
 	is_completed integer,
 	uid_ varchar(20),
@@ -38,10 +38,10 @@ create table time_schedule(
 create table notification(
 	timestamp_utc integer,
 	uid_ varchar(20),
-	message_new varchar(30),
+	message_new varchar(20),
 	message_time varchar(10),
 	is_completed integer,
-	foreign key(uid_,timestamp_utc) references time_schedule(uid_,timestamp_utc),
+	foreign key(uid_,timestamp_utc) references time_schedule(uid_,timestamp_utc),	
 	primary key(uid_,timestamp_utc)
 );
 
